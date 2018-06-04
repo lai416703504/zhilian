@@ -14,8 +14,8 @@ class ZhilianSpider(scrapy.Spider):
     allowed_domains = ['zhaopin.com']
     start_urls = ['http://www.zhaopin.com/']
 
-    kd = '会计'
-    url = 'http://sou.zhaopin.com/jobs/searchresult.ashx?jl=深圳&kw=会计&p='
+    kd = 'java'
+    url = 'http://sou.zhaopin.com/jobs/searchresult.ashx?jl=深圳&kw='+ kd +'&p='
     cookie = "JSESSIONID=" + get_uuid() + ";" \
                                           "user_trace_token=" + get_uuid() + "; LGUID=" + get_uuid() + "; index_location_city=%E6%88%90%E9%83%BD; " \
                                                                                                        "SEARCH_ID=" + get_uuid() + '; _gid=GA1.2.717841549.1514043316; ' \
@@ -49,8 +49,8 @@ class ZhilianSpider(scrapy.Spider):
 
         pages = int(int(totalCount) / 60)
 
-        if pages >= 50:
-            pages = 50
+        if pages >= 100:
+            pages = 100
         else:
             pages = pages
 
@@ -91,6 +91,8 @@ class ZhilianSpider(scrapy.Spider):
                 item['maxSalary'] = salaryList[1]
             except Exception as e:
                 item['salary'] = ''
+                item['minSalary'] = ''
+                item['maxSalary'] = ''
 
             try:
                 item['location'] = result.xpath('.//tr[1]/td[5]/text()').extract()[0]

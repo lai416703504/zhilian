@@ -7,7 +7,7 @@
 import json
 import codecs
 from scrapy.exporters import JsonItemExporter
-
+import datetime
 
 class ZhilianPipeline(object):
     def process_item(self, item, spider):
@@ -16,7 +16,7 @@ class ZhilianPipeline(object):
 
 class JsonWriterPipeline(object):
     def __init__(self):
-        self.file = codecs.open('zhilian.json', 'w', encoding='utf-8')
+        self.file = codecs.open('zhilian_'+datetime.datetime.now().strftime('%Y%m%d%H%M%S')+'.json', 'w', encoding='utf-8')
         # self.exporter = JsonItemExporter(self.file, encoding='utf-8')
         # self.exporter.start_exporting()
 

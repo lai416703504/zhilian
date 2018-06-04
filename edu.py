@@ -11,7 +11,7 @@ mpl.rcParams['axes.unicode_minus'] = False
 mpl.rcParams['font.sans-serif'] = ['SimHei']
 custom_font = mpl.font_manager.FontProperties(fname='msyh.ttf')
 
-file = open('zhilian.json')
+file = open('zhilian_php.json')
 joblist = []
 for eachline in file:
     joblist.append(json.loads(eachline))
@@ -52,7 +52,7 @@ plt.xlim(([bar_width / 2 - 0.5, len(edu_map) - bar_width / 2]))
 plt.ylim([0, 10000])
 
 
-plt.savefig("edu.png",dpi=100)
+plt.savefig("edu_php.png",dpi=100)
 
 plt.show()
 # plt.show()
